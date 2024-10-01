@@ -1,0 +1,335 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Budget</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 50px;
+        font-size: 2.5em;
+        font-weight: 600;
+      }
+
+      /* Form Container */
+      .form-container {
+        width: 80%;
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Form Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      label {
+        font-size: 1.1em;
+        margin-bottom: 5px;
+      }
+
+      input[type="number"],
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Optional Back to Dashboard Link */
+      .back-to-dashboard {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-to-dashboard:hover {
+        background-color: #0056b3;
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2em;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+          font-size: 0.9em;
+        }
+
+        button {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Set Your Budget</h1>
+      <form method="POST" action="{{ url_for('set_budget') }}">
+        <label for="budget">Budget Amount:</label>
+        <input type="number" id="budget" name="budget" required /><br />
+
+        <label for="month">Month:</label>
+        <input
+          type="text"
+          id="month"
+          name="month"
+          placeholder="MM"
+          required
+        /><br />
+
+        <label for="year">Year:</label>
+        <input
+          type="text"
+          id="year"
+          name="year"
+          placeholder="YYYY"
+          required
+        /><br />
+
+        <button type="submit">Set Budget</button>
+      </form>
+      <a href="{{ url_for('dashboard') }}" class="back-to-dashboard"
+        >Back to Dashboard</a
+      >
+    </div>
+  </body>
+</html>
+
+
+<form method="POST" action="{{ url_for('set_budget') }}">
+  <label for="budget">Budget Amount:</label>
+  <input type="number" id="budget" name="budget" required /><br />
+
+  <label for="frequency">Frequency:</label>
+  <select id="frequency" name="frequency" required>
+    <option value="daily">Daily</option>
+    <option value="monthly">Monthly</option>
+    <option value="yearly">Yearly</option></select
+  ><br />
+
+  <div id="dayInput" style="display: none">
+    <label for="day">Day:</label>
+    <input type="text" id="day" name="day" placeholder="DD" /><br />
+  </div>
+
+  <label for="month">Month:</label>
+  <input type="text" id="month" name="month" placeholder="MM" required /><br />
+
+  <label for="year">Year:</label>
+  <input type="text" id="year" name="year" placeholder="YYYY" required /><br />
+
+  <button type="submit">Set Budget</button>
+</form>
+
+<script>
+  document.getElementById("frequency").addEventListener("change", function () {
+    var dayInput = document.getElementById("dayInput");
+    if (this.value === "daily") {
+      dayInput.style.display = "block";
+    } else {
+      dayInput.style.display = "none";
+    }
+  });
+</script>
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Budget</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      /* Title Styling */
+      h1 {
+        color: #333;
+        font-size: 2.5em;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      /* Form Container */
+      .form-container {
+        width: 90%;
+        max-width: 450px;
+        margin: 20px;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Form Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      label {
+        font-size: 1.2em;
+        font-weight: 500;
+        color: #555;
+      }
+
+      input[type="number"],
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1.1em;
+        transition: border-color 0.3s;
+      }
+
+      input[type="number"]:focus,
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+
+      button {
+        padding: 12px 20px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 8px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+      }
+
+      /* Optional Back to Dashboard Link */
+      .back-to-dashboard {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-to-dashboard:hover {
+        background-color: #0056b3;
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2em;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+          font-size: 1em;
+        }
+
+        button {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form method="POST" action="{{ url_for('set_budget') }}">
+      <label for="daily_budget">Daily Budget:</label>
+      <input
+        type="number"
+        id="daily_budget"
+        name="daily_budget"
+        required
+      /><br />
+
+      <label for="monthly_budget">Monthly Budget:</label>
+      <input
+        type="number"
+        id="monthly_budget"
+        name="monthly_budget"
+        required
+      /><br />
+
+      <label for="yearly_budget">Yearly Budget:</label>
+      <input
+        type="number"
+        id="yearly_budget"
+        name="yearly_budget"
+        required
+      /><br />
+
+      <button type="submit">Set Budget</button>
+
+      <a href="{{ url_for('dashboard') }}" class="back-to-dashboard"
+        >Back to Dashboard</a
+      >
+    </form>
+  </body>
+</html>

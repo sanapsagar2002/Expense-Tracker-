@@ -1,0 +1,175 @@
+/* General Body Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* Container for centered content */
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+h1, h2 {
+  color: #333;
+  margin-top: 50px;
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+/* Flash Messages */
+.flashes {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.flashes li {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.flashes .success {
+  background-color: #28a745;
+}
+
+.flashes .danger {
+  background-color: #dc3545;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Links */
+a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: #0056b3;
+}
+
+/* Table Styling for Manage Expenses */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+table td {
+  background-color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Chart Styling */
+#expenseChart {
+  margin-top: 20px;
+}
+
+/* Footer (Optional) */
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 8px 15px;
+  }
+
+  a {
+    font-size: 0.9em;
+    padding: 8px 15px;
+  }
+}
+

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Expense</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    
+    <style>
+      /* General Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      h2 {
+        color: #333;
+        margin-top: 50px;
+        font-size: 2.2em;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+
+      /* Form Styling */
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        font-size: 1.1em;
+        margin-bottom: 8px;
+        color: #555;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1.1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+
+      /* Button Styling */
+      .btn-primary {
+        display: inline-block;
+        width: 100%;
+        padding: 12px;
+        font-size: 1.2em;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+        box-shadow: 0 5px 10px rgba(0, 86, 179, 0.3);
+      }
+
+      /* Flash Messages */
+      .flashes {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+      }
+
+      .flashes li {
+        padding: 10px;
+        margin-bottom: 10px;
+        color: white;
+        border-radius: 5px;
+      }
+
+      .flashes .success {
+        background-color: #28a745;
+      }
+
+      .flashes .danger {
+        background-color: #dc3545;
+      }
+
+      /* Back to Dashboard Link */
+      a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 1em;
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+
+      /* Media Queries for Small Screens */
+      @media (max-width: 600px) {
+        .container {
+          width: 90%;
+          margin-top: 30px;
+        }
+
+        h2 {
+          font-size: 1.8em;
+        }
+
+        .btn-primary {
+          font-size: 1em;
+          padding: 10px;
+        }
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div class="container">
+      <h2>Add Expense</h2>
+
+      <!-- Flash messages for success or error -->
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+      <form action="{{ url_for('add_expense') }}" method="POST">
+        <div class="form-group">
+          <label for="item">Item</label>
+          <input
+            type="text"
+            name="item"
+            id="item"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="cost">Cost</label>
+          <input
+            type="number"
+            name="cost"
+            id="cost"
+            required
+            class="form-control"
+            step="0.01"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="expense_date">Date of Expense</label>
+          <input
+            type="date"
+            name="expense_date"
+            id="expense_date"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+      </form>
+
+      <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+    </div>
+  </body>
+</html>

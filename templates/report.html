@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 50px;
+        font-size: 2.5em;
+        font-weight: 600;
+      }
+
+      /* Chart Container */
+      .chart-container {
+        width: 80%;
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Canvas Styling */
+      canvas {
+        width: 50% !important;
+        height: auto !important;
+      }
+
+      /* Form Styling */
+      form {
+        margin: 20px 0;
+      }
+
+      label {
+        margin-right: 10px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      /* Button Styling */
+      button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Optional Back to Dashboard Link */
+      .back-to-dashboard {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-to-dashboard:hover {
+        background-color: #0056b3;
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chart-container">
+      <h1>Expense Reports</h1>
+      <form method="POST" action="{{ url_for('report') }}">
+        <div class="form-group">
+          <label for="start_date">Start Date:</label>
+          <input type="date" id="start_date" name="start_date" required />
+        </div>
+        <div class="form-group">
+          <label for="end_date">End Date:</label>
+          <input type="date" id="end_date" name="end_date" required />
+        </div>
+        <div class="form-group">
+          <label for="period">Period:</label>
+          <select id="period" name="period" required>
+            <option value="daywise">Daywise</option>
+            <option value="monthwise">Monthwise</option>
+            <option value="yearwise">Yearwise</option>
+          </select>
+        </div>
+        <button type="submit">Generate Report</button>
+      </form>
+
+      <canvas id="expenseChart" width="300" height="300"></canvas>
+
+      <a href="{{ url_for('dashboard') }}" class="back-to-dashboard"
+        >Back to Dashboard</a
+      >
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      var ctx = document.getElementById('expenseChart').getContext('2d');
+      var expenseChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: {{ labels|tojson }},
+          datasets: [{
+            label: 'Expenses',
+            data: {{ data|tojson }},
+            backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56'],
+          }]
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <style>
+      /* Base Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #333;
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 50px;
+        font-size: 3em;
+        font-weight: bold;
+      }
+
+      /* Link Styling */
+      a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 1.2em;
+        margin: 0 15px;
+        padding: 10px 20px;
+        background-color: #fff;
+        border: 2px solid #007bff;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      a:hover {
+        background-color: #007bff;
+        color: #fff;
+      }
+
+      /* Footer Styling */
+      footer {
+        margin-top: 450px;
+        padding: 20px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        font-size: 0.9em;
+      }
+
+      /* Media Queries */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2.2em;
+        }
+
+        a {
+          display: block;
+          margin: 15px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to Expense Tracker</h1>
+    <br><br>
+    <a href="{{ url_for('login') }}">Login</a> |
+
+    <a href="{{ url_for('register') }}">Register</a>
+
+    <footer>
+      <p>&copy; 2024 Expense Tracker | All Rights Reserved</p>
+    </footer>
+  </body>
+</html>

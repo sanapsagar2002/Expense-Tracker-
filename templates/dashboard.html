@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-top: 50px;
+        font-size: 2.8em;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      /* Dashboard Links */
+      a {
+        display: block;
+        width: 250px;
+        margin: 10px auto;
+        padding: 15px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 1.2em;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      a:hover {
+        background-color: #0056b3;
+        box-shadow: 0 7px 20px rgba(0, 86, 179, 0.4);
+        transform: translateY(-3px);
+      }
+
+      /* Optional Navigation Section */
+      nav {
+        margin-top: 30px;
+        display: inline-block;
+      }
+
+      /* Footer Styling */
+      footer {
+        margin-top:100px;
+        padding: 20px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        font-size: 0.9em;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      /* Styling the Links Container */
+      .link-container {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        width: 80%;
+        max-width: 400px;
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2em;
+        }
+
+        a {
+          width: 100%;
+          font-size: 1em;
+          padding: 12px 15px;
+        }
+
+        .link-container {
+          width: 90%;
+        }
+      }
+      /* Fieldset Styling */
+      fieldset {
+        border: 2px solid black;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 600px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+    
+    </style>
+  </head>
+  <body>
+    
+    <h1>Welcome <br>{{ username }}</h1>
+ 
+
+<!-- Fieldset for Links -->
+<fieldset>
+
+    <a href="{{ url_for('add_expense') }}">Add Expense</a>
+    <a href="{{ url_for('manage_expense') }}">Manage Expenses</a>
+    <a href="{{ url_for('report') }}">View Reports</a>
+    <a href="{{ url_for('set_budget') }}">Set Budget</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+ 
+</fieldset>
+
+
+
+    <footer>
+      <p>&copy; 2024 Expense Tracker | All Rights Reserved</p>
+    </footer>
+  </body>
+</html>
